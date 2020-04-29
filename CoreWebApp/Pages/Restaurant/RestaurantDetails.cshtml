@@ -1,0 +1,22 @@
+﻿@page "{restaurantId:int}" 
+    @* This means /Restaurant/RestaurantDetails/1 *@
+    @* RestaurantDetails?id=1 Will be converted to ^above*@
+    @* Parameter is necessary and must be parseable to int *@
+    @* Note: This route value will be converted to parameter as is needed as Input Model*@
+@model CoreWebApp.RestaurantDetailsModel
+@{
+    ViewData["Title"] = "RestaurantDetails";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <ul>
+        @*<li>id: @id</li>*@
+        <li>ID: @Model.Restaurant.id</li>
+        <li>Name: @Model.Restaurant.Name</li>
+        <li>Location: @Model.Restaurant.Location</li>
+        <li>Cuisine: @Model.Restaurant.Cuisine</li>
+        <li>PureVeg: @Model.Restaurant.PureVeg</li>
+    </ul>
+
+@* It sets the href of link *@
+<a asp-page="./List" class="btn btn-default">Back to restaurants list</a>

@@ -1,0 +1,80 @@
+﻿@page
+@model CoreWebApp.ListModel
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+    
+    <form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="search" class="form-control" 
+                       name="searchRest" value="@Model.SearchRest"/>    @* SearchRest is input model or use asp-for="SearchRest" attribute *@
+                <span class="input-group-btn"></span>                   @* which is used to maintain what user searched in input field *@
+                <button class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        @if (Model.RestaurantsByName.Count() > 0)
+        {
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Location</td>
+                    <td>Cuisine</td>
+                </tr>
+            </thead>
+        }
+        else { }
+        @foreach (var rest in Model.RestaurantsByName)
+        {
+    <tr>
+        <td>@rest.id</td>
+        <td>@rest.Name</td>
+        <td>@rest.Location</td>
+        <td>@rest.Cuisine</td>
+        <td>
+            <a asp-page="./RestaurantDetails" asp-route-restaurantId="@rest.id">
+                @* href value be like /Restaurant/RestaurantDetails?restaurantId=1 *@
+                <i class="fas fa-search"></i>
+            </a>
+            <a asp-page="./EditRestaurant" asp-route-restaurantId="@rest.id">
+                @* href value be like /Restaurant/EditRestaurant?restaurantId=1 *@
+                <i class="fas fa-edit"></i>
+            </a>
+        </td>
+    </tr>
+        }
+    </table>
+
+    <table class="table">
+        @if (Model.Restaurants.Count() > 0)
+        {
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Location</td>
+                    <td>Cuisine</td>
+                </tr>
+            </thead>
+        }
+        else { }
+        @foreach (var rest in Model.Restaurants)
+        {
+            <tr>
+                <td>@rest.id</td>
+                <td>@rest.Name</td>
+                <td>@rest.Location</td>
+                <td>@rest.Cuisine</td>
+            </tr>
+        }
+    </table>
+
+    <p>@Model.Message</p>
+

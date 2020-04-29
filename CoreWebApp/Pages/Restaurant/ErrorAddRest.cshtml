@@ -1,0 +1,14 @@
+﻿@page
+@model CoreWebApp.ErrorAddRestModel
+@{
+    ViewData["Title"] = "ErrorAddRest";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>ErrorAddRestaurant</h1>
+
+@foreach(var mod in Model.modelStates)
+{
+    <p>@mod.ToString()</p>
+}
+
